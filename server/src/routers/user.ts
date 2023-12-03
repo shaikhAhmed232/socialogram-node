@@ -1,9 +1,11 @@
 import {Router} from "express";
-import { getUser } from "../controllers/user";
+import { getUesrList, getUserById } from "../controllers/user";
+import errorWrapper from "../middleware/errorWrapper";
 
 const userRouter = Router();
 
-userRouter.route('/').get(getUser);
+userRouter.get("/", errorWrapper(getUesrList));
+userRouter.get("/:id", errorWrapper(getUserById));
 
 
 export default userRouter;
